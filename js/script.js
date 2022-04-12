@@ -45,6 +45,106 @@ const local = {
 //------------------------------------------------------------------------
 
 
+// MODALES
+
+
+const btnNuevaVenta = document.getElementById('nuevaVenta'); //boton nueva venta
+const tablaHtml = document.getElementById('tabla'); // la tabla
+const modalVenta = document.getElementById('agregarVenta'); //el modal
+const formulario = document.getElementById('nuevaVenta'); //el formulario
+
+//const cerrarModalVenta = document.getElementById('cerrarModalVenta');
+//const btnConfirmarVenta = document.getElementById(confirmarVenta); 
+
+btnNuevaVenta.addEventListener('click', () => {
+    modalVenta.classList.add('mostrar');
+//    formulario.addEventListener('click')
+})
+
+// //clase viernes 7 de diciembre 
+// // AYUDA1 : https://codepen.io/JoseLuis/pen/abLjXMR
+// // AYUDA2 : PARA COMPARAR FECHAS https://www.it-swarm-es.com/es/javascript/compara-dos-fechas-con-javascript/958176042/
+
+
+
+// window.addEventListener('click', e => {
+//     if (e.target === modalVenta) {
+//         modalVenta.style.display = 'none';
+//     }
+// })
+
+
+// // FUNCION PARA QUE DES-APAREZCA EL MODAL DE LA NUEVA VENTA
+// cerrarModalVenta.addEventListener('click', () => {
+//     modalVenta.classList.remove('mostrar')
+// })
+
+// // BOTON EDITAR VENTA + MODAL EDITAR VENTA + BOTON CERRAR MODAL EDITAR VENTA
+// const modalEditarVenta = document.getElementById('editarVenta');
+// const btnEditarVenta = document.getElementById('btn-editar');
+// const cerrarModalEditarVenta = document.getElementById('cerrarModalEditarVenta')
+
+// // FUNCION PARA QUE APAREZCA EL MODAL DE EDITAR VENTA
+// btnEditarVenta.addEventListener('click', () => {
+//     modalEditarVenta.classList.add('mostrar')
+// })
+
+// // FUNCION PARA QUE DES-APAREZCA EL MODAL DE EDITAR VENTA
+// cerrarModalVenta.addEventListener('click', () => {
+//     modalEditarVenta.classList.remove('mostrar')
+// })
+
+// // BOTON ELIMINAR VENTA + MODAL ELIMINAR VENTA + BOTON CANCELAR Y CERRAR MODAL ELIMINAR VENTA + BOTON ACEPTAR Y CERRAR MODAL ELIMINAR VENTA
+// const btnEliminarVentas = document.getElementById('btn-eliminar');
+// const modalEliminarVenta = document.getElementById('eliminarVenta');
+// const btnCancelarEliminarVenta = document.getElementById('cerrarModalEliminarVenta');
+// const btnAceptarEliminarVenta = document.getElementById('aceptarEliminarVenta');
+
+// // FUNCION PARA QUE APAREZCA EL MODAL DE ELIMINAR VENTA
+// btnEliminarVentas.addEventListener('click', () => {
+//     modalEliminarVenta.classList.add('mostrar');
+// })
+// // FUNCION PARA QUE DES-APAREZCA EL MODAL DE ELIMINAR VENTA con CANCELAR
+// btnCancelarEliminarVenta.addEventListener('click', () => {
+//     modalEliminarVenta.classList.remove('mostrar');
+// })
+
+// // FUNCION PARA QUE DES-APAREZCA EL MODAL DE ELIMINAR VENTA con ACEPTAR
+// btnAceptarEliminarVenta.addEventListener('click', () => {
+//     //HACER QUE EL TR DEL BOTON SELECCIONADO SE ELIMINE
+//     modalEliminarVenta.classList.remove('mostrar');
+// })
+
+// // FUNCION SI ESTA EL MODAL ABIERTO Y HAGO CLICK FUERA DEL MODAL, SE CIERRA AUTOMATIAMENTE
+// //----->  MODAL NUEVA VENTA
+// window.addEventListener('click', (e) => {
+//     if (e.target == modalVenta) {
+//         modalVenta.classList.remove('mostrar');
+//     }
+// })
+// //-----> MODAL EDITAR VENTA 
+// window.addEventListener('click', (e) => {
+//     if (e.target == modalEditarVenta) {
+//         modalEditarVenta.classList.remove('mostrar');
+//     }
+// })
+// //-----> MODAL EDITAR VENTA 
+// window.addEventListener('click', (e) => {
+//     if (e.target == modalEliminarVenta) {
+//         modalEliminarVenta.classList.remove('mostrar');
+//     }
+// })
+
+
+
+
+
+
+
+
+
+//----------------------------------------------------------------------
+
 // # Parte 1
 
 //********************************* */
@@ -64,9 +164,9 @@ const precioComponente = (componente) => {
 //console.log(precioComponente("Monitor GPRS 3000")) // 200
 
 
-const precioMaquina = (array) => {
+const precioMaquina = (arrayComponentes) => {
     let precioComponentesComprados = 0
-    for (const componente of array) {
+    for (const componente of arrayComponentes) {
         precioComponentesComprados += precioComponente(componente)
     }
     return precioComponentesComprados
@@ -308,18 +408,17 @@ const sucursalDelMes = (mes, anio) =>{
 
 
 
-const tablaHtml = document.getElementById('tabla'); // la tabla
-const formulario = document.getElementById('nuevaVenta'); //el formulario
 
 const llenarTablaVentas =  () => {
     const {ventas, precios} = local
     for ( const venta of ventas) {
         //console.log(venta)
+        const {fecha, nombreVendedora, sucursal, componentes} = ventas
         const crearFila = document.createElement('tr');
         tablaHtml.appendChild(crearFila);
-            crearFila.innerHTML =
+            crearFila.innerHTML +=
                 `<td>${fecha}</td>
-                <td>${venta.nombreVendedora}</td>
+                <td>${nombreVendedora}</td>
                 <td>${sucursal}</td>
                 <td>${componentes}</td>
                 <td>${precioMaquina(ventas.componentes)}</td>
