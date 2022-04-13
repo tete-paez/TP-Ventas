@@ -39,9 +39,6 @@ const local = {
     ]
   };
   
-
-
-
 //------------------------------------------------------------------------
 
 
@@ -61,17 +58,12 @@ btnNuevaVenta.addEventListener('click', () => {
 //    formulario.addEventListener('click')
 })
 
-// //clase viernes 7 de diciembre 
-// // AYUDA1 : https://codepen.io/JoseLuis/pen/abLjXMR
-// // AYUDA2 : PARA COMPARAR FECHAS https://www.it-swarm-es.com/es/javascript/compara-dos-fechas-con-javascript/958176042/
 
-
-
-// window.addEventListener('click', e => {
-//     if (e.target === modalVenta) {
-//         modalVenta.style.display = 'none';
-//     }
-// })
+window.addEventListener('click', e => {
+    if (e.target === modalVenta) {
+        modalVenta.style.display = 'none';
+    }
+})
 
 
 // // FUNCION PARA QUE DES-APAREZCA EL MODAL DE LA NUEVA VENTA
@@ -135,14 +127,6 @@ btnNuevaVenta.addEventListener('click', () => {
 //     }
 // })
 
-
-
-
-
-
-
-
-
 //----------------------------------------------------------------------
 
 // # Parte 1
@@ -161,7 +145,7 @@ const precioComponente = (componente) => {
         }
     }
 }
-//console.log(precioComponente("Monitor GPRS 3000")) // 200
+console.log(precioComponente("Monitor GPRS 3000")) // 200
 
 
 const precioMaquina = (arrayComponentes) => {
@@ -196,7 +180,7 @@ const cantidadVentasComponente = (unComponente) => {
     }
     return cantidadDeVecesQueSeVendioElComponente
 }
-//console.log(cantidadVentasComponente('Monitor ASC 543')); // 5
+console.log(cantidadVentasComponente('Monitor ASC 543')); // 5
 
 
 
@@ -234,7 +218,7 @@ const vendedoraDelMes1 = (mes, anio) => {
     }return vendedoraCapa
     }
 
-//console.log(vendedoraDelMes1(1, 2019))
+console.log(vendedoraDelMes1(1, 2019))
 
 
 //********************************* */
@@ -253,12 +237,12 @@ const ventasMes = (mes, anio) => {
     }
     return totalVentasDeEseMes
 }
-//console.log(ventasMes(1, 2019))
+console.log(ventasMes(1, 2019))
 
 //********************************* */
 // EJERCICIO 5
 //********************************* */
-// ventasVendedora(nombre): Obtener las ventas totales realizadas por una vendedora sin límite de fecha.
+ //ventasVendedora(nombre): Obtener las ventas totales realizadas por una vendedora sin límite de fecha.
 
 const ventasVendedora = (nombreDeVendedora) => {
     const {ventas} = local
@@ -269,7 +253,7 @@ const ventasVendedora = (nombreDeVendedora) => {
     }
     return totalVentasDeEsaVendedora
 }
-//console.log(ventasVendedora("Hedy"))
+console.log(ventasVendedora("Hedy"))
 
 
 
@@ -298,7 +282,7 @@ const componenteMasVendido = () => {
     }
     return componenteMasDemandado
 }
-//console.log(componenteMasVendido())
+console.log(componenteMasVendido())
 
 
 
@@ -316,7 +300,7 @@ const huboVentas = (mes, anio) => {
     const ventasFiltradoPorFecha = ventas.filter(elemento => elemento.fecha.getMonth() + 1 === mes && elemento.fecha.getFullYear() === anio)
     return ventasFiltradoPorFecha
 }
-//console.log(huboVentas(1, 2019))
+console.log(huboVentas(1, 2019))
 
 
 //********************************* *///********************************* */
@@ -335,7 +319,7 @@ const ventasSucursal = (sucursalP) => {
     const ventasXsucursal = ventas.filter(venta => venta.sucursal === sucursalP)
     return ventasXsucursal
 }
-//console.log(ventasSucursal("Centro"))
+console.log(ventasSucursal("Centro"))
 
 
 
@@ -368,7 +352,7 @@ const sucursalDelMes = (mes, anio) =>{
     return contadorVentasXsucursal
 }
 
-//console.log(sucursalDelMes(1, 2019))
+console.log(sucursalDelMes(1, 2019))
 
 // `
 // # Parte 3
@@ -407,25 +391,171 @@ const sucursalDelMes = (mes, anio) =>{
 //const format = (date, locale, options) => new Intl.DateTimeFormat(locale, options).format(date);
 
 
+const format = (date, locale, options) => new Intl.DateTimeFormat(locale, options).format(date);
+const form = document.getElementById("nuevaVenta")
+const btnAceptarNuevaVenta = document.getElementById("btnSubmitNuevaVenta")
+
+
+const agregarNuevaVenta = (e) => {
+    e.preventDefault()
+    const form = e.target
+    const {ventas} = local
+    let getVendedora = form.vendedoras.value;
+    let getComponentes = obtenerValoresSeleccionados(componentes);
+    let getSucursal = form.sucursal.value;
+    let getFecha = form.fecha.value;
+                const nuevaVenta = {
+                    fecha : getFecha,
+                    nombreVendedora : getVendedora,
+                    componentes : getComponentes,
+                    sucursal: getSucursal,
+                }
+                ventas.push(nuevaVenta)
+                console.log(nuevaVenta)
+                console.log(ventas)
+}
+//agregarNuevaVenta()
+FormNuevaVenta.addEventListener("submit", agregarNuevaVenta)
+
+
+
+
 
 
 const llenarTablaVentas =  () => {
-    const {ventas, precios} = local
+    const {ventas} = local
     for ( const venta of ventas) {
-        //console.log(venta)
-        const {fecha, nombreVendedora, sucursal, componentes} = ventas
+        const {fecha, nombreVendedora, sucursal, componentes} = venta
         const crearFila = document.createElement('tr');
-        tablaHtml.appendChild(crearFila);
-            crearFila.innerHTML +=
-                `<td>${fecha}</td>
-                <td>${nombreVendedora}</td>
-                <td>${sucursal}</td>
-                <td>${componentes}</td>
-                <td>${precioMaquina(ventas.componentes)}</td>
-                <td class= "td-botones">
-                <button type="button" class="btn" id="btn-editar"><i class="fas fa-edit iconEditar"></i></button>
-                <button type="button" class="btn" id="btn-eliminar"><i class="fas fa-trash iconEliminar"></i></button> 
-                `
-            }
-        }
+            tablaHtml.appendChild(crearFila);
+                crearFila.innerHTML +=
+                    `<td>${format(fecha)}</td>
+                    <td>${nombreVendedora}</td>
+                    <td>${sucursal}</td>
+                    <td>${componentes}</td>
+                    <td>${precioMaquina(componentes)}</td>
+                    <td class= "td-botones">
+                    <button type="button" class="btn" id="btn-editar"><i class="fas fa-edit iconEditar"></i></button>
+                    <button type="button" class="btn" id="btn-eliminar"><i class="fas fa-trash iconEliminar"></i></button> 
+                    `
+    }
+}
 llenarTablaVentas();
+
+const cargarVendedoras = () => {
+    const {vendedoras} = local;
+    const select = document.getElementById("vendedoras"); //Seleccionamos el select
+    //recorro el array de vendedoras y creo los elementos donde van a ir
+    for (const vendedora of vendedoras) {
+        let option = document.createElement("option"); //Creamos la opcion
+        option.innerHTML = vendedora; //Metemos el texto en la opción
+        select.appendChild(option); //Metemos la opción en el select
+    }
+}
+cargarVendedoras();
+
+
+// function seleccionarVendedora () {
+//     let selectVendedora = document.getElementById('vendedoras')
+//     let vendedoraSeleccionada = selectVendedora.value;
+//     console.logreturn(vendedoraSeleccionada);
+// }
+// //seleccionarVendedora ()
+
+
+const cargarComponentes = () => {
+    const {precios} = local
+    for (const precio of precios) {
+        const {componente} = precio
+            const selectComponente = document.getElementById("componentes"); //Seleccionamos el select
+            let optionComponente = document.createElement("option"); //Creamos la opcion
+            optionComponente.innerHTML = componente; //Metemos el texto en la opción
+            selectComponente.appendChild(optionComponente); //Metemos la opción en el select
+        }
+   // return true
+}
+cargarComponentes();
+
+
+
+const cargarSucursales = () => {
+    const {sucursales} = local
+    const select = document.getElementById("sucursal"); //Seleccionamos el select
+    //recorro el array de vendedoras y creo los elementos donde van a ir
+    for (let i = 0; i < sucursales.length; i++) {
+        let option = document.createElement("option"); //Creamos la opcion
+        option.innerHTML = sucursales[i]; //Metemos el texto en la opción
+        select.appendChild(option); //Metemos la opción en el select
+    }
+}
+cargarSucursales();
+
+let obtenerValoresSeleccionados = (select) => {
+    let result = [];
+    let options = select && select.options;
+    let opt;
+
+    for (let i = 0; i < options.length; i++) {
+        opt = options[i];
+        opt.selected ? result.push(opt.value) : false;
+    }
+    return result;
+}
+
+
+// const agregarNuevaVenta = (e) => {
+//     e.preventDefault()
+//     const form = e.target
+//     const {ventas} = local
+//     let getVendedora = form.vendedoras.value;
+//     let getComponentes = obtenerValoresSeleccionados(componentes);
+//     let getSucursal = form.sucursal.value;
+//     let getFecha = form.fecha.value;
+//                 const nuevaVenta = {
+//                     fecha : getFecha,
+//                     nombreVendedora : getVendedora,
+//                     componentes : getComponentes,
+//                     sucursal: getSucursal,
+//                 }
+//                 ventas.push(nuevaVenta)
+//                 console.log(nuevaVenta)
+//                 console.log(ventas)
+// }
+// //agregarNuevaVenta()
+// FormNuevaVenta.addEventListener("submit", agregarNuevaVenta)
+
+
+// const getData = () => {
+//     let getVendedora = form.vendedoras.value;
+//     let getComponentes = form.componentes.value;
+//     let getSucursal = form.sucursal.value;
+//     let getFecha = form.fecha.value;
+// }
+// console.log(getData())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const ventasXsucursalCentro = document.getElementById("celdaVentasPorSucursalCentro")
+ventasXsucursalCentro.innerHTML = (ventasSucursal("Centro")).length
+
+const ventasXsucursalCaballito = document.getElementById("celdaVentasPorSucursalCaballito")
+ventasXsucursalCaballito.innerHTML = (ventasSucursal("Caballito")).length
+
+
+const elComponenteMasVendido = document.getElementById("celdaProductoEstrella")
+elComponenteMasVendido.innerHTML = (componenteMasVendido())
+
+const laVendedoraQueMasVendio = document.getElementById("celdaVendedoraMayorIngresoGenerado")
+laVendedoraQueMasVendio.innerHTML = ((ventasVendedora("Hedy")))
