@@ -63,18 +63,21 @@
         <div class="container xl">
             <div class="title ventas">
                 <h3>VENTAS</h3>
-                <button id="nuevaVenta" class="btn nuevaVenta"><i class="fas fa-plus-circle iconNuevaVenta"></i>Nueva
-                    Venta</button>
+                <button type="button" id="nuevaVenta" class="btn nuevaVenta">
+                    <i class="fas fa-plus-circle iconNuevaVenta"></i>NuevaVenta
+                </button>
             </div>
-            <table class="table" id="tabla">
-                <tr>
+            <table>
+                <thead>
                     <th scope="col">FECHA</th>
                     <th scope="col">VENDEDORA</th>
                     <th scope="col">SUCURSAL</th>
                     <th scope="col">COMPONENTES</th>
                     <th scope="col">PRECIO</th>
                     <th scope="col">ACCIONES</th>
-                </tr>
+                </thead>
+                <tbody id="tabla"></tbody>
+                
             </table>
         </div>
     </div>
@@ -106,9 +109,9 @@
                     <input type="date" id="fecha" required class="inputFecha" />
                 </div>
                 <div class="cancelar-aceptar">
-                    <button id="cerrarModalVenta" id="btnCancelarNuevaVenta" class="btn"><i
+                    <button id="cerrarModalVenta"  class="btn"><i
                             class="fas fa-times-circle cancelar"></i></button>
-                    <button type="submit" id="btnSubmitNuevaVenta" class="btn"><i
+                    <button id="btnSubmitNuevaVenta" class="btn"><i
                             class="fas fa-check-circle guardar"></i></button>
                 </div>
             </form>
@@ -120,27 +123,28 @@
             <div class="title ventas">
                 <h3>Editar Venta</h3>
             </div>
-            <form action="">
+            <form id="modalFormNuevaVenta"action="">
                 <div class="info">
                     <label>VENDEDORA:</label>
-                    <input type="name" />
+                    <select id="vendedorasModal" required></select>
                 </div>
                 <div class="info">
                     <label>COMPONENTES:</label>
-                    <input type="name" />
-                </div>
+                    <select id="componentesModal" required multiple></select>
+                    </div>
                 <div class="info">
                     <label>SUCURSAL:</label>
-                    <input type="name" />
+                    <select id="sucursalModal" required>
+                        <option  value=""  >Seleccionar</option>
+                    </select>
                 </div>
                 <div class="info">
                     <label>FECHA:</label>
-                    <input type="date" />
+                    <input type="date" id="fechaModal" required class="inputFecha" />
                 </div>
                 <div class="cancelar-aceptar">
-                    <button id="cerrarModalEditarVenta" class="btn"><i
-                            class="fas fa-times-circle cancelar"></i></button>
-                    <button class="btn"><i class="fas fa-check-circle guardar"></i></button>
+                    <button id="cerrarModalEditarVenta" class="btn"><i class="fas fa-times-circle cancelar"></i></button>
+                    <button id="aceptarEdicionEnModalEditarVenta" class="btn"><i class="fas fa-check-circle guardar"></i></button>
                 </div>
             </form>
         </div>

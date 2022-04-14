@@ -1,131 +1,169 @@
 const local = {
     vendedoras: ["Ada", "Grace", "Hedy", "Sheryl"],
     sucursales: ["Centro", "Caballito"],
-  
+
     ventas: [
-      // tener en cuenta que Date guarda los meses del 0 (enero) al 11 (diciembre)
-      { fecha: new Date(2019, 1, 4), nombreVendedora: "Grace", componentes: ["Monitor GPRS 3000", "Motherboard ASUS 1500"], sucursal: "Centro" },
-      { fecha: new Date(2019, 0, 1), nombreVendedora: "Ada", componentes: ["Monitor GPRS 3000", "Motherboard ASUS 1500"], sucursal: "Centro"  },
-      { fecha: new Date(2019, 0, 2), nombreVendedora: "Grace", componentes: ["Monitor ASC 543", "Motherboard MZI"], sucursal: "Centro"  },
-      { fecha: new Date(2019, 0, 10), nombreVendedora: "Ada", componentes: ["Monitor ASC 543", "Motherboard ASUS 1200"], sucursal: "Centro"  },
-      { fecha: new Date(2019, 0, 12), nombreVendedora: "Grace", componentes: ["Monitor GPRS 3000", "Motherboard ASUS 1200"], sucursal: "Centro"  },
-      { fecha: new Date(2019, 1, 24), nombreVendedora: "Sheryl", componentes: ["Motherboard ASUS 1500", "HDD Wezter Dishital"], sucursal: "Caballito"},
-      { fecha: new Date(2019, 1, 12), nombreVendedora: "Hedy", componentes: ["Monitor GPRS 3000", "HDD Toyiva"], sucursal: "Centro"},
-      { fecha: new Date(2019, 1, 1), nombreVendedora: "Ada", componentes: ["Motherboard MZI", "RAM Quinston Fury"], sucursal: "Centro"},
-      { fecha: new Date(2019, 1, 11), nombreVendedora: "Grace", componentes: ["Monitor ASC 543", "RAM Quinston"], sucursal: "Caballito"},
-      { fecha: new Date(2019, 1, 15), nombreVendedora: "Ada", componentes: ["Motherboard ASUS 1200", "RAM Quinston Fury"], sucursal: "Centro"},
-      { fecha: new Date(2019, 1, 12), nombreVendedora: "Hedy", componentes: ["Motherboard ASUS 1500", "HDD Toyiva"], sucursal: "Caballito"},
-      { fecha: new Date(2019, 1, 21), nombreVendedora: "Grace", componentes: ["Motherboard MZI", "RAM Quinston"], sucursal: "Centro"},
-      { fecha: new Date(2019, 1, 8), nombreVendedora: "Sheryl", componentes: ["Monitor ASC 543", "HDD Wezter Dishital"], sucursal: "Centro"},
-      { fecha: new Date(2019, 1, 16), nombreVendedora: "Sheryl", componentes: ["Monitor GPRS 3000", "RAM Quinston Fury"], sucursal: "Centro"},
-      { fecha: new Date(2019, 1, 27), nombreVendedora: "Hedy", componentes: ["Motherboard ASUS 1200", "HDD Toyiva"], sucursal: "Caballito"},
-      { fecha: new Date(2019, 1, 22), nombreVendedora: "Grace", componentes: ["Monitor ASC 543", "HDD Wezter Dishital"], sucursal: "Centro"},
-      { fecha: new Date(2019, 1, 5), nombreVendedora: "Ada", componentes: ["Motherboard ASUS 1500", "RAM Quinston"], sucursal: "Centro"},
-      { fecha: new Date(2019, 1, 1), nombreVendedora: "Grace", componentes: ["Motherboard MZI", "HDD Wezter Dishital"], sucursal: "Centro"},
-      { fecha: new Date(2019, 1, 7), nombreVendedora: "Sheryl", componentes: ["Monitor GPRS 3000", "RAM Quinston"], sucursal: "Caballito"},
-      { fecha: new Date(2019, 1, 14), nombreVendedora: "Ada", componentes: ["Motherboard ASUS 1200", "HDD Toyiva"], sucursal: "Centro"}
+        // tener en cuenta que Date guarda los meses del 0 (enero) al 11 (diciembre)
+        {
+            fecha: new Date(2019, 1, 4),
+            nombreVendedora: "Grace",
+            componentes: ["Monitor GPRS 3000", "Motherboard ASUS 1500"],
+            sucursal: "Centro"
+        },
+        {
+            fecha: new Date(2019, 0, 1),
+            nombreVendedora: "Ada",
+            componentes: ["Monitor GPRS 3000", "Motherboard ASUS 1500"],
+            sucursal: "Centro"
+        },
+        {
+            fecha: new Date(2019, 0, 2),
+            nombreVendedora: "Grace",
+            componentes: ["Monitor ASC 543", "Motherboard MZI"],
+            sucursal: "Centro"
+        },
+        {
+            fecha: new Date(2019, 0, 10),
+            nombreVendedora: "Ada",
+            componentes: ["Monitor ASC 543", "Motherboard ASUS 1200"],
+            sucursal: "Centro"
+        },
+        {
+            fecha: new Date(2019, 0, 12),
+            nombreVendedora: "Grace",
+            componentes: ["Monitor GPRS 3000", "Motherboard ASUS 1200"],
+            sucursal: "Centro"
+        },
+        {
+            fecha: new Date(2019, 1, 24),
+            nombreVendedora: "Sheryl",
+            componentes: ["Motherboard ASUS 1500", "HDD Wezter Dishital"],
+            sucursal: "Caballito"
+        },
+        {
+            fecha: new Date(2019, 1, 12),
+            nombreVendedora: "Hedy",
+            componentes: ["Monitor GPRS 3000", "HDD Toyiva"],
+            sucursal: "Centro"
+        },
+        {
+            fecha: new Date(2019, 1, 1),
+            nombreVendedora: "Ada",
+            componentes: ["Motherboard MZI", "RAM Quinston Fury"],
+            sucursal: "Centro"
+        },
+        {
+            fecha: new Date(2019, 1, 11),
+            nombreVendedora: "Grace",
+            componentes: ["Monitor ASC 543", "RAM Quinston"],
+            sucursal: "Caballito"
+        },
+        {
+            fecha: new Date(2019, 1, 15),
+            nombreVendedora: "Ada",
+            componentes: ["Motherboard ASUS 1200", "RAM Quinston Fury"],
+            sucursal: "Centro"
+        },
+        {
+            fecha: new Date(2019, 1, 12),
+            nombreVendedora: "Hedy",
+            componentes: ["Motherboard ASUS 1500", "HDD Toyiva"],
+            sucursal: "Caballito"
+        },
+        {
+            fecha: new Date(2019, 1, 21),
+            nombreVendedora: "Grace",
+            componentes: ["Motherboard MZI", "RAM Quinston"],
+            sucursal: "Centro"
+        },
+        {
+            fecha: new Date(2019, 1, 8),
+            nombreVendedora: "Sheryl",
+            componentes: ["Monitor ASC 543", "HDD Wezter Dishital"],
+            sucursal: "Centro"
+        },
+        {
+            fecha: new Date(2019, 1, 16),
+            nombreVendedora: "Sheryl",
+            componentes: ["Monitor GPRS 3000", "RAM Quinston Fury"],
+            sucursal: "Centro"
+        },
+        {
+            fecha: new Date(2019, 1, 27),
+            nombreVendedora: "Hedy",
+            componentes: ["Motherboard ASUS 1200", "HDD Toyiva"],
+            sucursal: "Caballito"
+        },
+        {
+            fecha: new Date(2019, 1, 22),
+            nombreVendedora: "Grace",
+            componentes: ["Monitor ASC 543", "HDD Wezter Dishital"],
+            sucursal: "Centro"
+        },
+        {
+            fecha: new Date(2019, 1, 5),
+            nombreVendedora: "Ada",
+            componentes: ["Motherboard ASUS 1500", "RAM Quinston"],
+            sucursal: "Centro"
+        },
+        {
+            fecha: new Date(2019, 1, 1),
+            nombreVendedora: "Grace",
+            componentes: ["Motherboard MZI", "HDD Wezter Dishital"],
+            sucursal: "Centro"
+        },
+        {
+            fecha: new Date(2019, 1, 7),
+            nombreVendedora: "Sheryl",
+            componentes: ["Monitor GPRS 3000", "RAM Quinston"],
+            sucursal: "Caballito"
+        },
+        {
+            fecha: new Date(2019, 1, 14),
+            nombreVendedora: "Ada",
+            componentes: ["Motherboard ASUS 1200", "HDD Toyiva"],
+            sucursal: "Centro"
+        }
     ],
-  
-    precios: [
-      { componente: "Monitor GPRS 3000", precio: 200 },
-      { componente: "Motherboard ASUS 1500", precio: 120 },
-      { componente: "Monitor ASC 543", precio: 250 },
-      { componente: "Motherboard ASUS 1200", precio: 100 },
-      { componente: "Motherboard MZI", precio: 30 },
-      { componente: "HDD Toyiva", precio: 90 },
-      { componente: "HDD Wezter Dishital", precio: 75 },
-      { componente: "RAM Quinston", precio: 110 },
-      { componente: "RAM Quinston Fury", precio: 230 }
+
+    precios: [{
+            componente: "Monitor GPRS 3000",
+            precio: 200
+        },
+        {
+            componente: "Motherboard ASUS 1500",
+            precio: 120
+        },
+        {
+            componente: "Monitor ASC 543",
+            precio: 250
+        },
+        {
+            componente: "Motherboard ASUS 1200",
+            precio: 100
+        },
+        {
+            componente: "Motherboard MZI",
+            precio: 30
+        },
+        {
+            componente: "HDD Toyiva",
+            precio: 90
+        },
+        {
+            componente: "HDD Wezter Dishital",
+            precio: 75
+        },
+        {
+            componente: "RAM Quinston",
+            precio: 110
+        },
+        {
+            componente: "RAM Quinston Fury",
+            precio: 230
+        }
     ]
-  };
-  
-//------------------------------------------------------------------------
-
-
-// MODALES
-
-
-const btnNuevaVenta = document.getElementById('nuevaVenta'); //boton nueva venta
-const tablaHtml = document.getElementById('tabla'); // la tabla
-const modalVenta = document.getElementById('agregarVenta'); //el modal
-const formulario = document.getElementById('nuevaVenta'); //el formulario
-
-//const cerrarModalVenta = document.getElementById('cerrarModalVenta');
-//const btnConfirmarVenta = document.getElementById(confirmarVenta); 
-
-btnNuevaVenta.addEventListener('click', () => {
-    modalVenta.classList.add('mostrar');
-//    formulario.addEventListener('click')
-})
-
-
-window.addEventListener('click', e => {
-    if (e.target === modalVenta) {
-        modalVenta.style.display = 'none';
-    }
-})
-
-
-// // FUNCION PARA QUE DES-APAREZCA EL MODAL DE LA NUEVA VENTA
-// cerrarModalVenta.addEventListener('click', () => {
-//     modalVenta.classList.remove('mostrar')
-// })
-
-// // BOTON EDITAR VENTA + MODAL EDITAR VENTA + BOTON CERRAR MODAL EDITAR VENTA
-// const modalEditarVenta = document.getElementById('editarVenta');
-// const btnEditarVenta = document.getElementById('btn-editar');
-// const cerrarModalEditarVenta = document.getElementById('cerrarModalEditarVenta')
-
-// // FUNCION PARA QUE APAREZCA EL MODAL DE EDITAR VENTA
-// btnEditarVenta.addEventListener('click', () => {
-//     modalEditarVenta.classList.add('mostrar')
-// })
-
-// // FUNCION PARA QUE DES-APAREZCA EL MODAL DE EDITAR VENTA
-// cerrarModalVenta.addEventListener('click', () => {
-//     modalEditarVenta.classList.remove('mostrar')
-// })
-
-// // BOTON ELIMINAR VENTA + MODAL ELIMINAR VENTA + BOTON CANCELAR Y CERRAR MODAL ELIMINAR VENTA + BOTON ACEPTAR Y CERRAR MODAL ELIMINAR VENTA
-// const btnEliminarVentas = document.getElementById('btn-eliminar');
-// const modalEliminarVenta = document.getElementById('eliminarVenta');
-// const btnCancelarEliminarVenta = document.getElementById('cerrarModalEliminarVenta');
-// const btnAceptarEliminarVenta = document.getElementById('aceptarEliminarVenta');
-
-// // FUNCION PARA QUE APAREZCA EL MODAL DE ELIMINAR VENTA
-// btnEliminarVentas.addEventListener('click', () => {
-//     modalEliminarVenta.classList.add('mostrar');
-// })
-// // FUNCION PARA QUE DES-APAREZCA EL MODAL DE ELIMINAR VENTA con CANCELAR
-// btnCancelarEliminarVenta.addEventListener('click', () => {
-//     modalEliminarVenta.classList.remove('mostrar');
-// })
-
-// // FUNCION PARA QUE DES-APAREZCA EL MODAL DE ELIMINAR VENTA con ACEPTAR
-// btnAceptarEliminarVenta.addEventListener('click', () => {
-//     //HACER QUE EL TR DEL BOTON SELECCIONADO SE ELIMINE
-//     modalEliminarVenta.classList.remove('mostrar');
-// })
-
-// // FUNCION SI ESTA EL MODAL ABIERTO Y HAGO CLICK FUERA DEL MODAL, SE CIERRA AUTOMATIAMENTE
-// //----->  MODAL NUEVA VENTA
-// window.addEventListener('click', (e) => {
-//     if (e.target == modalVenta) {
-//         modalVenta.classList.remove('mostrar');
-//     }
-// })
-// //-----> MODAL EDITAR VENTA 
-// window.addEventListener('click', (e) => {
-//     if (e.target == modalEditarVenta) {
-//         modalEditarVenta.classList.remove('mostrar');
-//     }
-// })
-// //-----> MODAL EDITAR VENTA 
-// window.addEventListener('click', (e) => {
-//     if (e.target == modalEliminarVenta) {
-//         modalEliminarVenta.classList.remove('mostrar');
-//     }
-// })
+};
 
 //----------------------------------------------------------------------
 
@@ -387,40 +425,50 @@ console.log(sucursalDelMes(1, 2019))
 
 // RENDERIZANDO:
 
-//PARA QUE LA FECHA ME QUEDE BIEN USAR ESTA FUNCION:
-//const format = (date, locale, options) => new Intl.DateTimeFormat(locale, options).format(date);
 
 
+
+
+
+//------------------------------------------------------------------------
+// MODALES
+//------------------------------------------------------------------------
+
+
+// FUNCIONES DE ALDANA POR SI ME TIRA ERROR
+// const precioComponente = (componente) => precios.find(item => item.componente === componente).precio 
+
+// const precioMaquina = (arrayDeComponentes) => {
+//     let precioComponentes = 0   
+//     arrayDeComponentes.forEach(componente => precioComponentes += precioComponente(componente))
+//     return precioComponentes 
+// }
+//------------------------------------------------------------------------
+
+const btnNuevaVenta = document.getElementById('nuevaVenta'); //boton nueva venta
+const tablaHtml = document.getElementById('tabla'); // la tabla
+const modalVenta = document.getElementById('agregarVenta'); //el modal
+const formulario = document.getElementById('nuevaVenta'); //el formulario
+const aceptarNuevaVenta = document.getElementById("btnSubmitNuevaVenta") // boton aceptar la venta
+
+// ABRIR MODAL NUEVA VENTA
+btnNuevaVenta.addEventListener('click', () => {
+    modalVenta.classList.add('mostrar');
+})
+
+// CERRAR MODAL NUEVA VENTA
+cerrarModalVenta.addEventListener('click', () => {
+    modalVenta.classList.remove('mostrar')
+})
+
+//PARA QUE LA FECHA ME QUEDE BIEN USAR ESTA FUNCION: fecha
 const format = (date, locale, options) => new Intl.DateTimeFormat(locale, options).format(date);
-const form = document.getElementById("nuevaVenta")
-const btnAceptarNuevaVenta = document.getElementById("btnSubmitNuevaVenta")
 
-
-const agregarNuevaVenta = (e) => {
-    e.preventDefault()
-    const form = e.target
-    const {ventas} = local
-    let getVendedora = form.vendedoras.value;
-    let getComponentes = obtenerValoresSeleccionados(componentes);
-    let getSucursal = form.sucursal.value;
-    let getFecha = form.fecha.value;
-                const nuevaVenta = {
-                    fecha : getFecha,
-                    nombreVendedora : getVendedora,
-                    componentes : getComponentes,
-                    sucursal: getSucursal,
-                }
-                ventas.push(nuevaVenta)
-                console.log(nuevaVenta)
-                console.log(ventas)
+const actualizarTabla = () => {
+    tablaHtml.innerHTML = ""
+    llenarTablaVentas();
 }
-//agregarNuevaVenta()
-FormNuevaVenta.addEventListener("submit", agregarNuevaVenta)
-
-
-
-
-
+//actualizarTabla()
 
 const llenarTablaVentas =  () => {
     const {ventas} = local
@@ -435,12 +483,39 @@ const llenarTablaVentas =  () => {
                     <td>${componentes}</td>
                     <td>${precioMaquina(componentes)}</td>
                     <td class= "td-botones">
-                    <button type="button" class="btn" id="btn-editar"><i class="fas fa-edit iconEditar"></i></button>
-                    <button type="button" class="btn" id="btn-eliminar"><i class="fas fa-trash iconEliminar"></i></button> 
+                    <button type="button" class="btn" id="btn-editar">
+                        <i class="fas fa-edit iconEditar"></i>
+                    </button>
+                    <button type="button" class="btn" id="btn-eliminar">
+                        <i class="fas fa-trash iconEliminar">
+                        </i></button> 
                     `
     }
 }
 llenarTablaVentas();
+
+const agregarNuevaVenta = (e) => {
+    e.preventDefault()
+    const {ventas} = local
+                const nuevaVenta = {
+                    fecha : fecha.value,
+                    nombreVendedora : vendedoras.value,
+                    componentes : obtenerValoresSeleccionados(componentes),
+                    sucursal: sucursal.value,
+                }
+                console.log(fecha.value)
+                console.log(ventas)
+                ventas.push(nuevaVenta)
+                console.log(nuevaVenta)
+                console.log(ventas)
+        modalVenta.classList.remove("mostrar")
+        tablaHtml.innerHTML = ""
+        // llenarTablaVentas()
+}
+//agregarNuevaVenta()
+
+aceptarNuevaVenta.classList.remove('mostrar')
+aceptarNuevaVenta.addEventListener("click", agregarNuevaVenta)
 
 const cargarVendedoras = () => {
     const {vendedoras} = local;
@@ -453,15 +528,6 @@ const cargarVendedoras = () => {
     }
 }
 cargarVendedoras();
-
-
-// function seleccionarVendedora () {
-//     let selectVendedora = document.getElementById('vendedoras')
-//     let vendedoraSeleccionada = selectVendedora.value;
-//     console.logreturn(vendedoraSeleccionada);
-// }
-// //seleccionarVendedora ()
-
 
 const cargarComponentes = () => {
     const {precios} = local
@@ -502,60 +568,122 @@ let obtenerValoresSeleccionados = (select) => {
     return result;
 }
 
-
-// const agregarNuevaVenta = (e) => {
-//     e.preventDefault()
-//     const form = e.target
-//     const {ventas} = local
-//     let getVendedora = form.vendedoras.value;
-//     let getComponentes = obtenerValoresSeleccionados(componentes);
-//     let getSucursal = form.sucursal.value;
-//     let getFecha = form.fecha.value;
-//                 const nuevaVenta = {
-//                     fecha : getFecha,
-//                     nombreVendedora : getVendedora,
-//                     componentes : getComponentes,
-//                     sucursal: getSucursal,
-//                 }
-//                 ventas.push(nuevaVenta)
-//                 console.log(nuevaVenta)
-//                 console.log(ventas)
-// }
-// //agregarNuevaVenta()
-// FormNuevaVenta.addEventListener("submit", agregarNuevaVenta)
-
-
-// const getData = () => {
-//     let getVendedora = form.vendedoras.value;
-//     let getComponentes = form.componentes.value;
-//     let getSucursal = form.sucursal.value;
-//     let getFecha = form.fecha.value;
-// }
-// console.log(getData())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// SECCION VENTAS POR SUCURSAL
 const ventasXsucursalCentro = document.getElementById("celdaVentasPorSucursalCentro")
 ventasXsucursalCentro.innerHTML = (ventasSucursal("Centro")).length
 
 const ventasXsucursalCaballito = document.getElementById("celdaVentasPorSucursalCaballito")
 ventasXsucursalCaballito.innerHTML = (ventasSucursal("Caballito")).length
 
-
+//SECCION REPORTES
 const elComponenteMasVendido = document.getElementById("celdaProductoEstrella")
 elComponenteMasVendido.innerHTML = (componenteMasVendido())
 
 const laVendedoraQueMasVendio = document.getElementById("celdaVendedoraMayorIngresoGenerado")
 laVendedoraQueMasVendio.innerHTML = ((ventasVendedora("Hedy")))
+
+
+
+// MODALES EDITAR VENTA Y ELIMINAR VENTA
+
+
+// BOTON EDITAR VENTA + MODAL EDITAR VENTA + BOTON CERRAR MODAL EDITAR VENTA
+const modalEditarVenta = document.getElementById('editarVenta');
+const btnEditarVenta = document.getElementById('btn-editar');
+const cerrarModalEditarVenta = document.getElementById('cerrarModalEditarVenta')
+
+// FUNCION PARA QUE APAREZCA EL MODAL DE EDITAR VENTA Y CARGAR SELECTS (vendedoras,sucursal,fecha,componentes)
+btnEditarVenta.addEventListener('click', () => {
+    modalEditarVenta.classList.add('mostrar')
+        
+        const cargarVendedorasModal = () => {
+            const {vendedoras} = local;
+            const select = document.getElementById("vendedorasModal"); //Seleccionamos el select
+            //recorro el array de vendedoras y creo los elementos donde van a ir
+            for (const vendedora of vendedoras) {
+                let option = document.createElement("option"); //Creamos la opcion
+                option.innerHTML = vendedora; //Metemos el texto en la opción
+                select.appendChild(option); //Metemos la opción en el select
+            }
+        }
+        cargarVendedorasModal();
+
+        const cargarComponentesModal = () => {
+            const {precios} = local
+            for (const precio of precios) {
+                const {componente} = precio
+                    const selectComponente = document.getElementById("componentesModal"); //Seleccionamos el select
+                    let optionComponente = document.createElement("option"); //Creamos la opcion
+                    optionComponente.innerHTML = componente; //Metemos el texto en la opción
+                    selectComponente.appendChild(optionComponente); //Metemos la opción en el select
+                }
+        // return true
+        }
+        cargarComponentesModal();
+
+        const cargarSucursalesModal = () => {
+            const {sucursales} = local
+            const select = document.getElementById("sucursalModal"); //Seleccionamos el select
+            //recorro el array de vendedoras y creo los elementos donde van a ir
+            for (let i = 0; i < sucursales.length; i++) {
+                let option = document.createElement("option"); //Creamos la opcion
+                option.innerHTML = sucursales[i]; //Metemos el texto en la opción
+                select.appendChild(option); //Metemos la opción en el select
+            }
+        }
+        cargarSucursalesModal();
+})
+
+
+// FUNCION PARA QUE DES-APAREZCA EL MODAL DE EDITAR VENTA
+cerrarModalVenta.addEventListener('click', () => {
+    modalEditarVenta.classList.remove('mostrar')
+})
+
+// BOTON ELIMINAR VENTA + MODAL ELIMINAR VENTA + BOTON CANCELAR Y CERRAR MODAL ELIMINAR VENTA + BOTON ACEPTAR Y CERRAR MODAL ELIMINAR VENTA
+const modalEliminarVenta = document.getElementById('eliminarVenta');
+const btnEliminarVentas = document.getElementById('btn-eliminar');
+const btnCancelarEliminarVenta = document.getElementById('cerrarModalEliminarVenta');
+//aceptarEdicionEnModalEditarVenta
+const btnAceptarEliminarVenta = document.getElementById('aceptarEliminarVenta');
+
+// FUNCION PARA QUE APAREZCA EL MODAL DE ELIMINAR VENTA
+btnEliminarVentas.addEventListener('click', () => {
+    modalEliminarVenta.classList.add('mostrar');
+})
+// FUNCION PARA QUE DES-APAREZCA EL MODAL DE ELIMINAR VENTA con CANCELAR
+btnCancelarEliminarVenta.addEventListener('click', () => {
+    modalEliminarVenta.classList.remove('mostrar');
+})
+// RE-VER ESTA FUNCION : FUNCIONA PERO NO LA VOY A USAR
+// FUNCION PARA QUE DES-APAREZCA EL MODAL DE ELIMINAR VENTA con ACEPTAR
+btnAceptarEliminarVenta.addEventListener('click', () => {
+    //HACER QUE EL TR DEL BOTON SELECCIONADO SE ELIMINE
+    modalEliminarVenta.classList.remove('mostrar');
+})
+
+// ESTA FUNCION ME GUSTA
+// ESTA FUNCION ME GUSTA
+// ESTA FUNCION ME GUSTA
+
+// FUNCION SI ESTA EL MODAL ABIERTO Y HAGO CLICK FUERA DEL MODAL, SE CIERRA AUTOMATIAMENTE
+// FUNCION PARA QUE desAPAREZCA EL MODAL DE LA NUEVA VENTA
+
+//----->  MODAL NUEVA VENTA
+window.addEventListener('click', (e) => {
+    if (e.target == modalVenta) {
+        modalVenta.classList.remove('mostrar');
+    }
+})
+//-----> MODAL EDITAR VENTA 
+window.addEventListener('click', (e) => {
+    if (e.target == modalEditarVenta) {
+        modalEditarVenta.classList.remove('mostrar');
+    }
+})
+//-----> MODAL EDITAR VENTA 
+window.addEventListener('click', (e) => {
+    if (e.target == modalEliminarVenta) {
+        modalEliminarVenta.classList.remove('mostrar');
+    }
+})
