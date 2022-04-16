@@ -1,3 +1,7 @@
+//----------------------------------------------------------------------------------
+// DATOS
+//----------------------------------------------------------------------------------
+
 const local = {
     vendedoras: ["Ada", "Grace", "Hedy", "Sheryl"],
     sucursales: ["Centro", "Caballito"],
@@ -167,15 +171,6 @@ const local = {
 
 //----------------------------------------------------------------------
 
-// # Parte 1
-
-//********************************* */
-//EJERCICIO 1
-//********************************* */
-
-// precioMaquina(componentes): recibe un array de componentes y devuelve el precio de la máquina que se puede armar con esos componentes,
-// que es la suma de los precios de cada componente incluido.
-
 const precioComponente = (componente) => {
     for (const objComponente of local.precios) {
         if (objComponente.componente === componente) {
@@ -184,7 +179,6 @@ const precioComponente = (componente) => {
     }
 }
 console.log(precioComponente("Monitor GPRS 3000")) // 200
-
 
 const precioMaquina = (arrayComponentes) => {
     let precioComponentesComprados = 0
@@ -195,21 +189,12 @@ const precioMaquina = (arrayComponentes) => {
 }
 
 console.log(precioMaquina(['Monitor GPRS 3000', 'Motherboard ASUS 1500']));
-// 320 ($200 del monitor + $120 del motherboard)))
-
-
-//********************************* */
-// EJERCICIO 2
-//********************************* */
-
-// cantidadVentasComponente(componente): recibe un componente y devuelve la cantidad de veces que fue vendido,
-// o sea que formó parte de una máquina que se vendió. La lista de ventas no se pasa por parámetro,
-// se asume que está identificada por la variable ventas
-
 
 const cantidadVentasComponente = (unComponente) => {
     let cantidadDeVecesQueSeVendioElComponente = 0
-    const {ventas} = local
+    const {
+        ventas
+    } = local
     for (const venta of ventas) {
         // console.log(venta)
         if (venta.componentes.includes(unComponente)) {
@@ -222,19 +207,14 @@ console.log(cantidadVentasComponente('Monitor ASC 543')); // 5
 
 
 
-//********************************* */
-//EJERCICIO 3
-//********************************* */
-
-// vendedoraDelMes(mes, anio), se le pasa dos parámetros numéricos, (mes, anio) y devuelve el nombre de la vendedora que más vendió en plata en el mes. O sea no cantidad de ventas, sino importe total de las ventas. 
-// El importe de una venta es el que indica la función precioMaquina. El mes es un número entero que va desde el 1 (enero) hasta el 12 (diciembre).
-
-
 const vendedoraDelMes1 = (mes, anio) => {
     let vendedoraCapa = ""
     let totalVentasVendedoraCapa = 0
     // destructuro las prpiedades que necesito
-    const {ventas, vendedoras} = local
+    const {
+        ventas,
+        vendedoras
+    } = local
     //filtro la propiedad ventas: y chekeo que la propiedad fecha de cada venta cpincida o no con las que paso x parametro
     const ventasFiltradoPorFecha = ventas.filter(elemento => elemento.fecha.getMonth() + 1 === mes && elemento.fecha.getFullYear() === anio)
     // creo el objeto vendedoras que es donde voy a poner cuanto vendio cada una(aca guardo el resultado de la fx precioMaquina)
@@ -244,31 +224,28 @@ const vendedoraDelMes1 = (mes, anio) => {
         // creo el contador para guardar las ventas acumuladas de cada una
         let contadorVentas = 0
         //
-        for ( const venta of ventasFiltradoPorFecha) {
+        for (const venta of ventasFiltradoPorFecha) {
             if (vendedora === venta.nombreVendedora) {
-                contadorVentas += precioMaquina(venta.componentes)// aca uso la fx precioMaquina y guardo en el contador el monto de la venta
+                contadorVentas += precioMaquina(venta.componentes) // aca uso la fx precioMaquina y guardo en el contador el monto de la venta
             }
         }
         if (totalVentasVendedoraCapa < contadorVentas) {
             totalVentasVendedoraCapa = contadorVentas
             vendedoraCapa = vendedora
         }
-    }return vendedoraCapa
     }
+    return vendedoraCapa
+}
 
 console.log(vendedoraDelMes1(1, 2019))
 
 
-//********************************* */
-// EJERCICIO 4
-//********************************* */
-
-// ventasMes(mes, anio): Obtener las ventas de un mes. El mes es un número entero que va desde el 1 (enero) hasta el 12 (diciembre).
-
 const ventasMes = (mes, anio) => {
-    const {ventas} = local
+    const {
+        ventas
+    } = local
     //console.log(ventas)
-    const ventasDelMes = ventas.filter( venta => venta.fecha.getMonth() + 1 === mes && venta.fecha.getFullYear() === anio)
+    const ventasDelMes = ventas.filter(venta => venta.fecha.getMonth() + 1 === mes && venta.fecha.getFullYear() === anio)
     let totalVentasDeEseMes = 0
     for (const venta of ventasDelMes) {
         totalVentasDeEseMes += precioMaquina(venta.componentes)
@@ -277,16 +254,11 @@ const ventasMes = (mes, anio) => {
 }
 console.log(ventasMes(1, 2019))
 
-//********************************* */
-// EJERCICIO 5
-//********************************* */
- //ventasVendedora(nombre): Obtener las ventas totales realizadas por una vendedora sin límite de fecha.
-
 const ventasVendedora = (nombreDeVendedora) => {
     const {ventas} = local
-    const ventasPorVendedora = ventas.filter( venta => venta.nombreVendedora === nombreDeVendedora)
+    const ventasPorVendedora = ventas.filter(venta => venta.nombreVendedora === nombreDeVendedora)
     let totalVentasDeEsaVendedora = 0
-    for (const venta of ventasPorVendedora){
+    for (const venta of ventasPorVendedora) {
         totalVentasDeEsaVendedora += precioMaquina(venta.componentes)
     }
     return totalVentasDeEsaVendedora
@@ -294,26 +266,14 @@ const ventasVendedora = (nombreDeVendedora) => {
 console.log(ventasVendedora("Hedy"))
 
 
-
-//********************************* */
-// EJERCICIO 6
-//********************************* */
-
-
-// componenteMasVendido():
-// Devuelve el nombre del componente que más ventas tuvo historicamente.
-// El dato de la cantidad de ventas es el que indica la función cantidadVentasComponente
-// tete: la cantidad de veces que el componente ese fue vendido
-// ejercicios artistas, cuantos artistas tocaban ese instrumento
-// crear objeto con cada componente y cuantos ventas se hizo y retornar el numero mayou
-
-
 const componenteMasVendido = () => {
-    const {precios} = local 
+    const {
+        precios
+    } = local
     let acc = 0;
     let componenteMasDemandado = "";
     for (const precio of precios) {
-        if (acc < cantidadVentasComponente(precio.componente)){
+        if (acc < cantidadVentasComponente(precio.componente)) {
             acc = cantidadVentasComponente(precio.componente)
             componenteMasDemandado = precio.componente
         }
@@ -324,126 +284,48 @@ console.log(componenteMasVendido())
 
 
 
-//********************************* */
-// EJERCICIO 7
-//********************************* */
-
-
-// huboVentas(mes, anio): que indica si hubo ventas en un mes determinado. 
-// El mes es un número entero que va desde el 1 (enero) hasta el 12 (diciembre).
-// `
-
 const huboVentas = (mes, anio) => {
-    const {ventas} = local
+    const {
+        ventas
+    } = local
     const ventasFiltradoPorFecha = ventas.filter(elemento => elemento.fecha.getMonth() + 1 === mes && elemento.fecha.getFullYear() === anio)
     return ventasFiltradoPorFecha
 }
 console.log(huboVentas(1, 2019))
 
 
-//********************************* *///********************************* */
-// # Parte 2
-//********************************* *///********************************* */
-
-//********************************* */
-// EJERCICIO 8
-//********************************* */
-
-// Crear la función ventasSucursal(sucursal), que obtiene las ventas totales realizadas por una sucursal sin límite de fecha.
-// `
 
 const ventasSucursal = (sucursalP) => {
-    const {ventas} = local
+    const {
+        ventas
+    } = local
     const ventasXsucursal = ventas.filter(venta => venta.sucursal === sucursalP)
     return ventasXsucursal
 }
 console.log(ventasSucursal("Centro"))
 
 
-
-
-// `
-// Las funciones ventasSucursal y ventasVendedora tienen mucho código en común, ya que es la misma funcionalidad pero trabajando con una propiedad distinta. Entonces,
-// ¿cómo harías para que ambas funciones reutilicen código y evitemos repetir?
-// `
-
-
-
-//********************************* */
-// sucursalDelMes
-//********************************* */
-// `
-// Crear la función sucursalDelMes(mes, anio), que se le pasa dos parámetros numéricos, (mes, anio) y devuelve el nombre de la sucursal que más vendió en plata en el mes. No cantidad de ventas, sino importe total de las ventas.
-// El importe de una venta es el que indica la función precioMaquina. El mes es un número entero que va desde el 1 (enero) hasta el 12 (diciembre).
-
-// devuelva la suc q mas vendio en $ en esa fecha 
-
-const sucursalDelMes = (mes, anio) =>{
-    const {ventas} = local
+const sucursalDelMes = (mes, anio) => {
+    const {
+        ventas
+    } = local
     const ventasFiltradoPorFecha = ventas.filter(elemento => elemento.fecha.getMonth() + 1 === mes && elemento.fecha.getFullYear() === anio)
     //console.log(ventasFiltradoPorFecha)
     let contadorVentasXsucursal = 0
     for (venta of ventasFiltradoPorFecha) {
         contadorVentasXsucursal += precioMaquina(venta.componentes)
-        
+
     }
     return contadorVentasXsucursal
 }
 
 console.log(sucursalDelMes(1, 2019))
 
-// `
-// # Parte 3
-
-
-// `
-// renderPorMes(): Muestra una lista ordenada del importe total vendido por cada mes/año
-// `
-
-
-
-
-// `
-// renderPorSucursal(): Muestra una lista del importe total vendido por cada sucursal
-// `
-
-// `
-// render(): Tiene que mostrar la unión de los dos reportes anteriores,
-// cual fue el producto más vendido y la vendedora que más ingresos generó
-// `
-// `
-// Reporte
-// Ventas por mes:
-//   Total de enero 2019: 1250
-//   Total de febrero 2019: 4210
-// Ventas por sucursal:
-//   Total de Centro: 4195
-//   Total de Caballito: 1265
-// Producto estrella: Monitor GPRS 3000
-// Vendedora que más ingresos generó: Grace
-
-
-// RENDERIZANDO:
-
-
-
-
-
 
 //------------------------------------------------------------------------
 // MODALES
 //------------------------------------------------------------------------
 
-
-// FUNCIONES DE ALDANA POR SI ME TIRA ERROR
-// const precioComponente = (componente) => precios.find(item => item.componente === componente).precio 
-
-// const precioMaquina = (arrayDeComponentes) => {
-//     let precioComponentes = 0   
-//     arrayDeComponentes.forEach(componente => precioComponentes += precioComponente(componente))
-//     return precioComponentes 
-// }
-//------------------------------------------------------------------------
 
 const btnNuevaVenta = document.getElementById('nuevaVenta'); //boton nueva venta
 const tablaHtml = document.getElementById('tabla'); // la tabla
@@ -461,8 +343,34 @@ cerrarModalVenta.addEventListener('click', () => {
     modalVenta.classList.remove('mostrar')
 })
 
-//PARA QUE LA FECHA ME QUEDE BIEN USAR ESTA FUNCION: fecha
-const format = (date, locale, options) => new Intl.DateTimeFormat(locale, options).format(date);
+const llenarTablaVentas = () => {
+    const {
+        ventas
+    } = local
+    ventas.forEach((venta, index) => {
+        //const {fecha, nombreVendedora, sucursal, componentes} = venta
+        const crearFila = document.createElement('tr');
+        tablaHtml.appendChild(crearFila);
+        crearFila.innerHTML +=
+            `<td>${venta.fecha}</td>
+            <td>${venta.nombreVendedora}</td>
+            <td>${venta.sucursal}</td>
+            <td>${venta.componentes}</td>
+            <td>${precioMaquina(venta.componentes)}</td>
+            <td class= "td-botones">
+                <button type="button" class="btn editarVentaParaModal" id=${index}>
+                    <i class="fas fa-edit iconEditar"></i>
+                </button>
+                <button type="button" class="btn eliminarVentaParaModal" id=${index}>
+                    <i class="fas fa-trash iconEliminar"></i>
+                </button> 
+                    `
+    })
+}
+llenarTablaVentas();
+
+
+
 
 const actualizarTabla = () => {
     tablaHtml.innerHTML = ""
@@ -470,55 +378,35 @@ const actualizarTabla = () => {
 }
 //actualizarTabla()
 
-const llenarTablaVentas =  () => {
-    const {ventas} = local
-    for ( const venta of ventas) {
-        const {fecha, nombreVendedora, sucursal, componentes} = venta
-        const crearFila = document.createElement('tr');
-            tablaHtml.appendChild(crearFila);
-                crearFila.innerHTML +=
-                    `<td>${format(fecha)}</td>
-                    <td>${nombreVendedora}</td>
-                    <td>${sucursal}</td>
-                    <td>${componentes}</td>
-                    <td>${precioMaquina(componentes)}</td>
-                    <td class= "td-botones">
-                    <button type="button" class="btn" id="btn-editar">
-                        <i class="fas fa-edit iconEditar"></i>
-                    </button>
-                    <button type="button" class="btn" id="btn-eliminar">
-                        <i class="fas fa-trash iconEliminar">
-                        </i></button> 
-                    `
-    }
-}
-llenarTablaVentas();
-
-const agregarNuevaVenta = (e) => {
+aceptarNuevaVenta.addEventListener('click', (e) => {
     e.preventDefault()
-    const {ventas} = local
-                const nuevaVenta = {
-                    fecha : fecha.value,
-                    nombreVendedora : vendedoras.value,
-                    componentes : obtenerValoresSeleccionados(componentes),
-                    sucursal: sucursal.value,
-                }
-                console.log(fecha.value)
-                console.log(ventas)
-                ventas.push(nuevaVenta)
-                console.log(nuevaVenta)
-                console.log(ventas)
-        modalVenta.classList.remove("mostrar")
-        tablaHtml.innerHTML = ""
-        // llenarTablaVentas()
-}
+    const { ventas } = local
+    const nuevaVenta = {
+        fecha: fecha.value,
+        nombreVendedora: vendedoras.value,
+        componentes: obtenerValoresSeleccionados(componentes),
+        sucursal: sucursal.value,
+    }
+    console.log(fecha.value)
+    console.log(ventas)
+
+    ventas.push(nuevaVenta)
+
+    console.log(nuevaVenta)
+    console.log(ventas)
+
+    tablaHtml.innerHTML = ""
+    llenarTablaVentas();
+
+    modalVenta.classList.remove("mostrar")
+    actualizarSeccionVentasXsucursales()
+})
 //agregarNuevaVenta()
 
-aceptarNuevaVenta.classList.remove('mostrar')
-aceptarNuevaVenta.addEventListener("click", agregarNuevaVenta)
-
 const cargarVendedoras = () => {
-    const {vendedoras} = local;
+    const {
+        vendedoras
+    } = local;
     const select = document.getElementById("vendedoras"); //Seleccionamos el select
     //recorro el array de vendedoras y creo los elementos donde van a ir
     for (const vendedora of vendedoras) {
@@ -530,22 +418,27 @@ const cargarVendedoras = () => {
 cargarVendedoras();
 
 const cargarComponentes = () => {
-    const {precios} = local
+    const {
+        precios
+    } = local
     for (const precio of precios) {
-        const {componente} = precio
-            const selectComponente = document.getElementById("componentes"); //Seleccionamos el select
-            let optionComponente = document.createElement("option"); //Creamos la opcion
-            optionComponente.innerHTML = componente; //Metemos el texto en la opción
-            selectComponente.appendChild(optionComponente); //Metemos la opción en el select
-        }
-   // return true
+        const {
+            componente
+        } = precio
+        const selectComponente = document.getElementById("componentes"); //Seleccionamos el select
+        let optionComponente = document.createElement("option"); //Creamos la opcion
+        optionComponente.innerHTML = componente; //Metemos el texto en la opción
+        selectComponente.appendChild(optionComponente); //Metemos la opción en el select
+    }
+    // return true
 }
 cargarComponentes();
 
 
-
 const cargarSucursales = () => {
-    const {sucursales} = local
+    const {
+        sucursales
+    } = local
     const select = document.getElementById("sucursal"); //Seleccionamos el select
     //recorro el array de vendedoras y creo los elementos donde van a ir
     for (let i = 0; i < sucursales.length; i++) {
@@ -568,99 +461,154 @@ let obtenerValoresSeleccionados = (select) => {
     return result;
 }
 
+//----------------------------------------------------------------------------------
+const aceptoLaEdicionDeLaNuevaVenta = document.getElementById("btnSubmitNuevaVenta") // id boton tick de "acepto la edicion de esta venta"
+
+aceptoLaEdicionDeLaNuevaVenta.addEventListener('click', (e) => {
+        e.preventDefault()
+        const { ventas } = local
+        
+        tablaHtml.innerHTML = ""
+        llenarTablaVentas();
+    
+        modalEditarVenta.classList.remove("mostrar")
+        actualizarSeccionVentasXsucursales()
+})
+
+
+
+
+
+
+
+//----------------------------------------------------------------------------------
 // SECCION VENTAS POR SUCURSAL
+//----------------------------------------------------------------------------------
+
 const ventasXsucursalCentro = document.getElementById("celdaVentasPorSucursalCentro")
-ventasXsucursalCentro.innerHTML = (ventasSucursal("Centro")).length
-
 const ventasXsucursalCaballito = document.getElementById("celdaVentasPorSucursalCaballito")
-ventasXsucursalCaballito.innerHTML = (ventasSucursal("Caballito")).length
-
-//SECCION REPORTES
 const elComponenteMasVendido = document.getElementById("celdaProductoEstrella")
-elComponenteMasVendido.innerHTML = (componenteMasVendido())
-
 const laVendedoraQueMasVendio = document.getElementById("celdaVendedoraMayorIngresoGenerado")
-laVendedoraQueMasVendio.innerHTML = ((ventasVendedora("Hedy")))
+
+const actualizarSeccionVentasXsucursales = () =>{
+    actualizarTabla();
+    ventasXsucursalCentro.innerHTML = (ventasSucursal("Centro")).length
+    ventasXsucursalCaballito.innerHTML = (ventasSucursal("Caballito")).length
+    elComponenteMasVendido.innerHTML = (componenteMasVendido())
+    laVendedoraQueMasVendio.innerHTML = ((ventasVendedora("Hedy")))
+}
+actualizarSeccionVentasXsucursales()
+
+//----------------------------------------------------------------------------------
+//SECCION REPORTES
+//----------------------------------------------------------------------------------
 
 
 
 // MODALES EDITAR VENTA Y ELIMINAR VENTA
 
+const modalEditarVenta = document.getElementById('editarVenta'); // modal
+const modalEliminarVenta = document.getElementById('eliminarVenta'); // modal eliminar venta
 
-// BOTON EDITAR VENTA + MODAL EDITAR VENTA + BOTON CERRAR MODAL EDITAR VENTA
-const modalEditarVenta = document.getElementById('editarVenta');
-const btnEditarVenta = document.getElementById('btn-editar');
+const aceptarEdicionModalEditarVenta = document.getElementById('aceptarEdicionEnModalEditarVenta') // boton aceptar editar la venta y guardaro
+
+const todosLosBotonesEditarVenta = document.querySelectorAll(".editarVentaParaModal"); // clase del boton editar venta => todos los botones
+const todosLosBotonesEliminarVenta = document.querySelectorAll(".eliminarVentaParaModal")// clase del boton editar venta => todos los botones
+
+
+
+
 const cerrarModalEditarVenta = document.getElementById('cerrarModalEditarVenta')
 
 // FUNCION PARA QUE APAREZCA EL MODAL DE EDITAR VENTA Y CARGAR SELECTS (vendedoras,sucursal,fecha,componentes)
-btnEditarVenta.addEventListener('click', () => {
-    modalEditarVenta.classList.add('mostrar')
-        
-        const cargarVendedorasModal = () => {
-            const {vendedoras} = local;
-            const select = document.getElementById("vendedorasModal"); //Seleccionamos el select
-            //recorro el array de vendedoras y creo los elementos donde van a ir
-            for (const vendedora of vendedoras) {
-                let option = document.createElement("option"); //Creamos la opcion
-                option.innerHTML = vendedora; //Metemos el texto en la opción
-                select.appendChild(option); //Metemos la opción en el select
-            }
-        }
-        cargarVendedorasModal();
 
-        const cargarComponentesModal = () => {
-            const {precios} = local
-            for (const precio of precios) {
-                const {componente} = precio
-                    const selectComponente = document.getElementById("componentesModal"); //Seleccionamos el select
-                    let optionComponente = document.createElement("option"); //Creamos la opcion
-                    optionComponente.innerHTML = componente; //Metemos el texto en la opción
-                    selectComponente.appendChild(optionComponente); //Metemos la opción en el select
-                }
-        // return true
-        }
-        cargarComponentesModal();
-
-        const cargarSucursalesModal = () => {
-            const {sucursales} = local
-            const select = document.getElementById("sucursalModal"); //Seleccionamos el select
-            //recorro el array de vendedoras y creo los elementos donde van a ir
-            for (let i = 0; i < sucursales.length; i++) {
-                let option = document.createElement("option"); //Creamos la opcion
-                option.innerHTML = sucursales[i]; //Metemos el texto en la opción
-                select.appendChild(option); //Metemos la opción en el select
-            }
-        }
-        cargarSucursalesModal();
-})
+const cargarVendedorasModal = () => {
+    const {
+        vendedoras
+    } = local;
+    const select = document.getElementById("vendedorasModal"); //Seleccionamos el select
+    //recorro el array de vendedoras y creo los elementos donde van a ir
+    for (const vendedora of vendedoras) {
+        let option = document.createElement("option"); //Creamos la opcion
+        option.innerHTML = vendedora; //Metemos el texto en la opción
+        select.appendChild(option); //Metemos la opción en el select
+    }
+}
 
 
-// FUNCION PARA QUE DES-APAREZCA EL MODAL DE EDITAR VENTA
-cerrarModalVenta.addEventListener('click', () => {
-    modalEditarVenta.classList.remove('mostrar')
-})
+const cargarComponentesModal = () => {
+    const { precios
+    } = local
+    for (const precio of precios) {
+        const {
+            componente
+        } = precio
+        const selectComponente = document.getElementById("componentesModal"); //Seleccionamos el select
+        let optionComponente = document.createElement("option"); //Creamos la opcion
+        optionComponente.innerHTML = componente; //Metemos el texto en la opción
+        selectComponente.appendChild(optionComponente); //Metemos la opción en el select
+    }
+    // return true
+}
+
+
+const cargarSucursalesModal = () => {
+    const {
+        sucursales
+    } = local
+    const select = document.getElementById("sucursalModal"); //Seleccionamos el select
+    //recorro el array de vendedoras y creo los elementos donde van a ir
+    for (let i = 0; i < sucursales.length; i++) {
+        let option = document.createElement("option"); //Creamos la opcion
+        option.innerHTML = sucursales[i]; //Metemos el texto en la opción
+        select.appendChild(option); //Metemos la opción en el select
+    }
+}
+
+const abrirModalEditarVenta = () => {
+    for (const botonEditarVenta of todosLosBotonesEditarVenta) {
+        botonEditarVenta.addEventListener('click', () => {
+            modalEditarVenta.classList.add('mostrar')
+            const idBotonEditarVenta = botonEditarVenta.getAttribute('id')
+            aceptarEdicionModalEditarVenta.setAttribute('idDEEditarVenta', idBotonEditarVenta)
+
+        })
+
+    }
+}
+abrirModalEditarVenta()
+cargarVendedorasModal();
+cargarComponentesModal();
+cargarSucursalesModal();
+
+const abrirModalEliminarrVenta = () => {
+    for (const botonEliminarVenta of todosLosBotonesEliminarVenta) {
+        botonEliminarVenta.addEventListener('click', () => {
+            modalEliminarVenta.classList.add('mostrar')
+            const idBotonEliminarVenta = botonEliminarVenta.getAttribute('id')
+            aceptarEdicionModalEditarVenta.setAttribute('idDEEditarVenta', idBotonEliminarVenta)
+
+        })
+
+    }
+}
+abrirModalEliminarrVenta()
+cargarVendedorasModal();
+cargarComponentesModal();
+cargarSucursalesModal();
+
+
+
+
+
+
 
 // BOTON ELIMINAR VENTA + MODAL ELIMINAR VENTA + BOTON CANCELAR Y CERRAR MODAL ELIMINAR VENTA + BOTON ACEPTAR Y CERRAR MODAL ELIMINAR VENTA
-const modalEliminarVenta = document.getElementById('eliminarVenta');
-const btnEliminarVentas = document.getElementById('btn-eliminar');
-const btnCancelarEliminarVenta = document.getElementById('cerrarModalEliminarVenta');
-//aceptarEdicionEnModalEditarVenta
-const btnAceptarEliminarVenta = document.getElementById('aceptarEliminarVenta');
+const btnCancelarEliminarVenta = document.getElementById('cerrarModalEliminarVenta'); // BOTON "CANCELO LA ELIMINADA"
+//const btnAceptarEliminarVenta = document.getElementById('aceptarEliminarVenta');//boton "acepto eliminar la venta"
 
-// FUNCION PARA QUE APAREZCA EL MODAL DE ELIMINAR VENTA
-btnEliminarVentas.addEventListener('click', () => {
-    modalEliminarVenta.classList.add('mostrar');
-})
-// FUNCION PARA QUE DES-APAREZCA EL MODAL DE ELIMINAR VENTA con CANCELAR
 btnCancelarEliminarVenta.addEventListener('click', () => {
-    modalEliminarVenta.classList.remove('mostrar');
-})
-// RE-VER ESTA FUNCION : FUNCIONA PERO NO LA VOY A USAR
-// FUNCION PARA QUE DES-APAREZCA EL MODAL DE ELIMINAR VENTA con ACEPTAR
-btnAceptarEliminarVenta.addEventListener('click', () => {
-    //HACER QUE EL TR DEL BOTON SELECCIONADO SE ELIMINE
-    modalEliminarVenta.classList.remove('mostrar');
-})
+    modalEliminarVenta.classList.remove('mostrar') });
 
 // ESTA FUNCION ME GUSTA
 // ESTA FUNCION ME GUSTA
