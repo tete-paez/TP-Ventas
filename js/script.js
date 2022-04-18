@@ -678,3 +678,5 @@ window.addEventListener("click", (e) => {
         modalEliminarVenta.classList.remove("mostrar");
     }
 });
+
+// chekeando
