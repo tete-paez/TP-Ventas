@@ -353,8 +353,8 @@ cerrarModalVenta.addEventListener("click", () => {
 });
 
 const llenarTablaVentas = () => {
-    //   let format = (date, locale, options) =>
-    //     new Intl.DateTimeFormat(locale, options).format(date);
+      let format = (date, locale, options) =>
+        new Intl.DateTimeFormat(locale, options).format(date);
     const {
         ventas
     } = local;
@@ -362,7 +362,7 @@ const llenarTablaVentas = () => {
         //const {fecha, nombreVendedora, sucursal, componentes} = venta
         const crearFila = document.createElement("tr");
         tablaHtml.appendChild(crearFila);
-        crearFila.innerHTML += `<td>${venta.fecha}</td>
+        crearFila.innerHTML += `<td>${format(venta.fecha)}</td>
             <td>${venta.nombreVendedora}</td>
             <td>${venta.sucursal}</td>
             <td>${venta.componentes}</td>
@@ -399,6 +399,8 @@ aceptarNuevaVenta.addEventListener("click", (e) => {
     llenarTablaVentas();
     modalVenta.classList.remove("mostrar");
     actualizarSeccionVentasXsucursales();
+    abrirModalEliminarrVenta()
+    abrirModalEditarVenta()
 });
 
 const cargarVendedoras = () => {
@@ -575,9 +577,7 @@ let sucursalModalEditar = document.getElementById("sucursalModal");
 
 aceptarEdicionModalEditarVenta.addEventListener("click", (e) => {
     //   e.preventDefault();
-    const {
-        ventas
-    } = local;
+    const {ventas} = local;
     const nuevaVentaEditada = {
         fecha: fechaModalEditar.value,
         nombreVendedora: vendedoraModalEditar.value,
@@ -585,15 +585,17 @@ aceptarEdicionModalEditarVenta.addEventListener("click", (e) => {
         sucursal: sucursalModalEditar.value,
     };
     ventas.forEach((venta, index) => {
-        if (
-            index == aceptarEdicionModalEditarVenta.getAttribute("idDEEditarVenta")) {
+        if (index == aceptarEdicionModalEditarVenta.getAttribute("idDEEditarVenta")) {
             ventas.splice(index, 1, nuevaVentaEditada);
-        }
-        modalEditarVenta.classList.remove("mostrar");
-    });
-    actualizarTabla();
+            }
+            modalEditarVenta.classList.remove("mostrar");
+        console.log(aceptarEdicionModalEditarVenta) 
 
-    actualizarSeccionVentasXsucursales();
+        actualizarTabla();
+        actualizarSeccionVentasXsucursales();
+        abrirModalEditarVenta()
+        abrirModalEliminarVenta() 
+    });
 });
 
 //----------------------------------------------------------------------------------
@@ -612,6 +614,7 @@ const abrirModalEliminarrVenta = () => {
             );
         });
     }
+    abrirModalEditarVenta
 };
 abrirModalEliminarrVenta();
 
@@ -630,6 +633,9 @@ const aceptarVentaEliminada = () => {
         )
             ventas.splice(index, 1);
         actualizarTabla();
+        actualizarSeccionVentasXsucursales();
+        abrirModalEliminarrVenta()
+        
     });
 };
 botonAceptarEliminarModalEliminarVenta.addEventListener(
