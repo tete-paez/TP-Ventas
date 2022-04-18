@@ -202,9 +202,7 @@ th {
     display: flex;
     flex-direction: column;
 }
-table {
-    overflow-x: auto;
-}
+
 }
 
 @media (max-width: 650px) {
@@ -212,7 +210,8 @@ table {
         width: 27%;
     }
     .xl {
-        overflow-x: 100%;
-        flex-wrap: wrap
+        overflow-x: scroll;
+        flex-wrap: wrap;
     }
+
 }
