@@ -502,6 +502,13 @@ const actualizarSeccionVentasXsucursales = () => {
 actualizarSeccionVentasXsucursales();
 
 
+
+
+
+
+
+
+
 // FUNCION PARA QUE APAREZCA EL MODAL DE EDITAR VENTA Y CARGAR SELECTS (vendedoras,sucursal,fecha,componentes)
 
 const cargarVendedorasModal = () => {

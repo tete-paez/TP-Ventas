@@ -52,6 +52,7 @@ body {
 }
 .imgVendedora {
     width: 15%;
+    margin-left: 8%;
 }
 .contenedorImgTabla {
     display: flex;
@@ -208,7 +209,7 @@ table {
 
 @media (max-width: 650px) {
     .nuevaVenta {
-        width: 48%;
+        width: 27%;
     }
     .xl {
         overflow-x: 100%;
