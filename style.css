@@ -205,3 +205,12 @@ table {
     overflow-x: auto;
 }
 }
+
+@media (max-width: 650px) {
+    .nuevaVenta {
+        width: 48%;
+    }
+    .xl {
+        overflow-x: 100%;
+    }
+}
