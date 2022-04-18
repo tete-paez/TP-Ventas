@@ -399,8 +399,8 @@ aceptarNuevaVenta.addEventListener("click", (e) => {
     llenarTablaVentas();
     modalVenta.classList.remove("mostrar");
     actualizarSeccionVentasXsucursales();
-    abrirModalEliminarrVenta()
     abrirModalEditarVenta()
+    abrirModalEliminarVenta()
 });
 
 const cargarVendedoras = () => {
@@ -589,18 +589,18 @@ aceptarEdicionModalEditarVenta.addEventListener("click", (e) => {
             ventas.splice(index, 1, nuevaVentaEditada);
             }
             modalEditarVenta.classList.remove("mostrar");
-        console.log(aceptarEdicionModalEditarVenta) 
+        // console.log(aceptarEdicionModalEditarVenta) 
 
         actualizarTabla();
         actualizarSeccionVentasXsucursales();
         abrirModalEditarVenta()
-        abrirModalEliminarVenta() 
+        abrirModalEliminarVenta()
     });
 });
 
 //----------------------------------------------------------------------------------
 
-const abrirModalEliminarrVenta = () => {
+const abrirModalEliminarVenta = () => {
     let todosLosBotonesEliminarVenta = document.querySelectorAll(
         ".eliminarVentaParaModal"
     ); // clase del boton editar venta => todos los botones
@@ -616,7 +616,7 @@ const abrirModalEliminarrVenta = () => {
     }
     abrirModalEditarVenta
 };
-abrirModalEliminarrVenta();
+abrirModalEliminarVenta();
 
 const aceptarVentaEliminada = () => {
     const {
@@ -634,8 +634,7 @@ const aceptarVentaEliminada = () => {
             ventas.splice(index, 1);
         actualizarTabla();
         actualizarSeccionVentasXsucursales();
-        abrirModalEliminarrVenta()
-        
+        abrirModalEliminarVenta()
     });
 };
 botonAceptarEliminarModalEliminarVenta.addEventListener(
