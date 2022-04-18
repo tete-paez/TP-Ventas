@@ -170,7 +170,8 @@ const local = {
 };
 
 //----------------------------------------------------------------------
-
+// EJERCITACION / PRACTICA
+//----------------------------------------------------------------------------------
 const precioComponente = (componente) => {
     for (const objComponente of local.precios) {
         if (objComponente.componente === componente) {
@@ -333,7 +334,15 @@ const sucursalDelMes = (mes, anio) => {
 //console.log(sucursalDelMes(1, 2019))
 
 //------------------------------------------------------------------------
-// MODALES
+//------------------------------------------------------------------------
+// PROTECTO ADA VENTAS
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+
+
+
+//------------------------------------------------------------------------
+// VARIABLES
 //------------------------------------------------------------------------
 
 const btnNuevaVenta = document.getElementById("nuevaVenta"); //boton nueva venta
@@ -341,6 +350,29 @@ const tablaHtml = document.getElementById("tabla"); // la tabla
 const modalVenta = document.getElementById("agregarVenta"); //el modal
 const formulario = document.getElementById("nuevaVenta"); //el formulario
 const aceptarNuevaVenta = document.getElementById("btnSubmitNuevaVenta"); // boton aceptar la venta
+
+const btnCancelarEliminarVenta = document.getElementById("cerrarModalEliminarVenta"); // BOTON "CANCELO LA ELIMINADA"
+
+const cerrarModalVenta = document.getElementById("cerrarModalVenta");
+//----------------------------------------------------------------------------------
+// SECCION VENTAS POR SUCURSAL
+
+const ventasXsucursalCentro = document.getElementById("celdaVentasPorSucursalCentro");
+const ventasXsucursalCaballito = document.getElementById("celdaVentasPorSucursalCaballito");
+const elComponenteMasVendido = document.getElementById("celdaProductoEstrella");
+const laVendedoraQueMasVendio = document.getElementById("celdaVendedoraMayorIngresoGenerado");
+
+//----------------------------------------------------------------------------------
+// MODALES EDITAR VENTA Y ELIMINAR VENTA
+
+const modalEditarVenta = document.getElementById("editarVenta"); // modal
+const aceptarEdicionModalEditarVenta = document.getElementById("aceptarEdicionEnModalEditarVenta"); // id de boton aceptar editar la venta y guardaro (tick)
+const modalEliminarVenta = document.getElementById("eliminarVenta"); // modal eliminar venta
+const botonAceptarEliminarModalEliminarVenta = document.getElementById("aceptarEliminarVenta");
+const cerrarModalEditarVenta = document.getElementById("cerrarModalEditarVenta");
+
+
+//----------------------------------------------------------------------------------
 
 // ABRIR MODAL NUEVA VENTA
 btnNuevaVenta.addEventListener("click", () => {
@@ -353,11 +385,9 @@ cerrarModalVenta.addEventListener("click", () => {
 });
 
 const llenarTablaVentas = () => {
-      let format = (date, locale, options) =>
+    let format = (date, locale, options) =>
         new Intl.DateTimeFormat(locale, options).format(date);
-    const {
-        ventas
-    } = local;
+    const {ventas} = local;
     ventas.forEach((venta, index) => {
         //const {fecha, nombreVendedora, sucursal, componentes} = venta
         const crearFila = document.createElement("tr");
@@ -381,9 +411,7 @@ llenarTablaVentas();
 
 aceptarNuevaVenta.addEventListener("click", (e) => {
     e.preventDefault();
-    const {
-        ventas
-    } = local;
+    const {ventas} = local;
     const nuevaVenta = {
         fecha: new Date(fecha.value),
         nombreVendedora: vendedoras.value,
@@ -422,15 +450,12 @@ const cargarComponentes = () => {
         precios
     } = local;
     for (const precio of precios) {
-        const {
-            componente
-        } = precio;
-        const selectComponente = document.getElementById("componentes"); //Seleccionamos el select
-        let optionComponente = document.createElement("option"); //Creamos la opcion
-        optionComponente.innerHTML = componente; //Metemos el texto en la opción
-        selectComponente.appendChild(optionComponente); //Metemos la opción en el select
+            const {componente} = precio;
+            const selectComponente = document.getElementById("componentes"); //Seleccionamos el select
+            let optionComponente = document.createElement("option"); //Creamos la opcion
+            optionComponente.innerHTML = componente; //Metemos el texto en la opción
+            selectComponente.appendChild(optionComponente); //Metemos la opción en el select
     }
-    // return true
 };
 cargarComponentes();
 
@@ -460,25 +485,12 @@ let obtenerValoresSeleccionados = (select) => {
     return result;
 };
 
-const actualizarTabla = () => {
+actualizarTabla = () => {
     tablaHtml.innerHTML = "";
     llenarTablaVentas();
 };
 
-//----------------------------------------------------------------------------------
-// SECCION VENTAS POR SUCURSAL
-//----------------------------------------------------------------------------------
 
-const ventasXsucursalCentro = document.getElementById(
-    "celdaVentasPorSucursalCentro"
-);
-const ventasXsucursalCaballito = document.getElementById(
-    "celdaVentasPorSucursalCaballito"
-);
-const elComponenteMasVendido = document.getElementById("celdaProductoEstrella");
-const laVendedoraQueMasVendio = document.getElementById(
-    "celdaVendedoraMayorIngresoGenerado"
-);
 
 const actualizarSeccionVentasXsucursales = () => {
     actualizarTabla();
@@ -489,26 +501,6 @@ const actualizarSeccionVentasXsucursales = () => {
 };
 actualizarSeccionVentasXsucursales();
 
-//----------------------------------------------------------------------------------
-//SECCION REPORTES
-//----------------------------------------------------------------------------------
-
-// MODALES EDITAR VENTA Y ELIMINAR VENTA
-
-const modalEditarVenta = document.getElementById("editarVenta"); // modal
-const modalEliminarVenta = document.getElementById("eliminarVenta"); // modal eliminar venta
-
-const aceptarEdicionModalEditarVenta = document.getElementById("aceptarEdicionEnModalEditarVenta"); // id de boton aceptar editar la venta y guardaro (tick)
-
-
-
-const botonAceptarEliminarModalEliminarVenta = document.getElementById(
-    "aceptarEliminarVenta"
-);
-
-const cerrarModalEditarVenta = document.getElementById(
-    "cerrarModalEditarVenta"
-);
 
 // FUNCION PARA QUE APAREZCA EL MODAL DE EDITAR VENTA Y CARGAR SELECTS (vendedoras,sucursal,fecha,componentes)
 
@@ -570,10 +562,10 @@ cargarVendedorasModal();
 cargarComponentesModal();
 cargarSucursalesModal();
 
-let fechaModalEditar = document.getElementById("fechaModal");
-let vendedoraModalEditar = document.getElementById("vendedorasModal");
-let componentesModalEditar = document.getElementById("componentesModal");
-let sucursalModalEditar = document.getElementById("sucursalModal");
+    let fechaModalEditar = document.getElementById("fechaModal");
+    let vendedoraModalEditar = document.getElementById("vendedorasModal");
+    let componentesModalEditar = document.getElementById("componentesModal");
+    let sucursalModalEditar = document.getElementById("sucursalModal");
 
 aceptarEdicionModalEditarVenta.addEventListener("click", (e) => {
     //   e.preventDefault();
@@ -590,7 +582,6 @@ aceptarEdicionModalEditarVenta.addEventListener("click", (e) => {
             }
             modalEditarVenta.classList.remove("mostrar");
         // console.log(aceptarEdicionModalEditarVenta) 
-
         actualizarTabla();
         actualizarSeccionVentasXsucursales();
         abrirModalEditarVenta()
@@ -598,7 +589,6 @@ aceptarEdicionModalEditarVenta.addEventListener("click", (e) => {
     });
 });
 
-//----------------------------------------------------------------------------------
 
 const abrirModalEliminarVenta = () => {
     let todosLosBotonesEliminarVenta = document.querySelectorAll(
@@ -619,19 +609,12 @@ const abrirModalEliminarVenta = () => {
 abrirModalEliminarVenta();
 
 const aceptarVentaEliminada = () => {
-    const {
-        ventas
-    } = local;
+    const {ventas} = local;
     modalEliminarVenta.classList.remove("mostrar");
     ventas.forEach((venta, index) => {
         //console.log(index)
-        if (
-            index ===
-            parseInt(
-                botonAceptarEliminarModalEliminarVenta.getAttribute("idDEEliminarVenta")
-            )
-        )
-            ventas.splice(index, 1);
+        if (index ===parseInt(botonAceptarEliminarModalEliminarVenta.getAttribute("idDEEliminarVenta"))
+        )ventas.splice(index, 1);
         actualizarTabla();
         actualizarSeccionVentasXsucursales();
         abrirModalEliminarVenta()
@@ -643,21 +626,12 @@ botonAceptarEliminarModalEliminarVenta.addEventListener(
 );
 
 // BOTON ELIMINAR VENTA + MODAL ELIMINAR VENTA + BOTON CANCELAR Y CERRAR MODAL ELIMINAR VENTA + BOTON ACEPTAR Y CERRAR MODAL ELIMINAR VENTA
-const btnCancelarEliminarVenta = document.getElementById(
-    "cerrarModalEliminarVenta"
-); // BOTON "CANCELO LA ELIMINADA"
-//const btnAceptarEliminarVenta = document.getElementById('aceptarEliminarVenta');//boton "acepto eliminar la venta"
 
 btnCancelarEliminarVenta.addEventListener("click", () => {
-    modalEliminarVenta.classList.remove("mostrar");
+modalEliminarVenta.classList.remove("mostrar");
 });
 
-// ESTA FUNCION ME GUSTA
-// ESTA FUNCION ME GUSTA
-// ESTA FUNCION ME GUSTA
-
-// FUNCION SI ESTA EL MODAL ABIERTO Y HAGO CLICK FUERA DEL MODAL, SE CIERRA AUTOMATIAMENTE
-// FUNCION PARA QUE desAPAREZCA EL MODAL DE LA NUEVA VENTA
+// FUNCION PARA QUE desAPAREZCA EL MODAL haciendo click afuera
 
 //----->  MODAL NUEVA VENTA
 window.addEventListener("click", (e) => {
@@ -678,4 +652,3 @@ window.addEventListener("click", (e) => {
     }
 });
 
-// chekeando

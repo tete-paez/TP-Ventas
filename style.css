@@ -212,5 +212,6 @@ table {
     }
     .xl {
         overflow-x: 100%;
+        flex-wrap: wrap
     }
 }
